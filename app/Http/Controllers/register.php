@@ -31,10 +31,13 @@ class Register extends Controller
 		->get();
 		foreach($data as $item)
 			{
+				$reset=DB::table('chat')
+			->update(['input'=>'']);
 		$userinsert=DB::table('chat')
 		->insert([
 			'chatbot'=>$item->ques,
-			'user'=>$message
+			'user'=>$message,
+			'input'=>$item->input
 		]);
 			}
 		}
@@ -68,10 +71,13 @@ class Register extends Controller
 		
 		 foreach($data as $item)
 		 {
+			 $reset=DB::table('chat')
+			->update(['input'=>'']);
 		 $userinsert=DB::table('chat')
 		 ->insert([
 		 'chatbot'=>$item->ques,
-		 'user'=>$id
+		 'user'=>$id,
+		 'input'=>$item->input
 		]);
 			 }
 		}
@@ -106,16 +112,20 @@ $data=DB::table('chat')->get();
 		]);
 		
 		$data1=DB::table('complaints')
+		->where('date',$array[2])
 		->where('contact_number',$array[1])
 		->get();	
 
 		 foreach($data1 as $item)
 		 {
 			 $data="this is your comlaint id:".$item->id." keep this for your future reference and press hey to continue";
+			 $reset=DB::table('chat')
+			->update(['input'=>'']);
 		 $userinsert=DB::table('chat')
 		 ->insert([
 		 'chatbot'=>$data,
-		 'user'=>"Submit"
+		 'user'=>"Submit",
+		 'input'=>'<input id = "msg" name="msg" type="text" maxlength="1000" autocomplete="off">'
 		]);
 		$insert=DB::table('complaint_track')
 		->insert([
@@ -146,10 +156,13 @@ $data=DB::table('chat')->get();
 		$delete=DB::table('registration_data')
 				->where('id','>=','1')
 				->delete();	
+				$reset=DB::table('chat')
+			->update(['input'=>'']);
 		$userinsert=DB::table('chat')
 		 ->insert([
 		 'chatbot'=>"type hey to continue ",
-		 'user'=>"cancel"
+		 'user'=>"cancel",
+		 'input'=>'<input id = "msg" name="msg" type="text" maxlength="1000" autocomplete="off">'
 		]);		
 				
 		$data=DB::table('chat')->get();
@@ -193,7 +206,8 @@ $data=DB::table('chat')->get();
 		$userinsert=DB::table('chat')
 		->insert([
 			'chatbot'=>$item->ques,
-			'user'=>'yes'
+			'user'=>'yes',
+			'input'=>$item->input
 		]);
 			}
 		}

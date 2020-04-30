@@ -91,7 +91,7 @@ font-size:40px
 	align-iteams:flex-start;
 	
 }
-.chat-form textarea
+.chat-form textarea ,input[type=text],input[type=tel],input[type=date]
 {
 	background-color:#fbfbfb;
 	width:75%;
@@ -101,20 +101,28 @@ font-size:40px
 	resize:none;
 	font-size:20px;
 	color:#333;
+	margin-left:5%;
 }
-.chat-form textarea:focus
+input[type=text]:focus
 {
 	background-color:#fff
 }
-.chat-form textarea::-webkit-scrollbar
+input[type=text]::-webkit-scrollbar
 {
 	width:10px;
 }
-.chat-form textarea::-webkit-scrollbar-thumb
+input[type=text]::-webkit-scrollbar-thumb
 {
 	border-radius:5px;
 	background-color:rgba(0,0,0,.1);
 }
+input.break {
+    word-wrap: break-word;
+    word-break: break-all;
+	height:50px;
+}
+
+
 .chat-form button
 {
 	background-color:#1ddced;
@@ -123,7 +131,7 @@ font-size:40px
 	color:#fff;
 	border:none;
 	margin:0 10px;
-	border-radius:5px;
+	border-radius:50%;
 	box-shadow:0 3px 0 #0eb2c1;
 	cursor:pointer;
 	-webkit-transition:background-color .2s ease;

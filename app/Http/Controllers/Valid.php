@@ -10,6 +10,8 @@ class Valid extends Controller
 	{
 		$message=$req->msg;
 		if($message!=null){
+			$reset=DB::table('chat')
+			->update(['input'=>'']);
 		$user=DB::table('chatbot')
 		->where('question',$message)
 		->count();
@@ -23,7 +25,8 @@ class Valid extends Controller
 			$userinsert=DB::table('chat')
 		->insert([
 			'chatbot'=>$item->response,
-			'user'=>$message
+			'user'=>$message,
+			'input'=>$item->input
 		]);
 			}
 		}
@@ -32,7 +35,8 @@ class Valid extends Controller
 			$userinsert=DB::table('chat')
 		->insert([
 			'chatbot'=>'sorry but i didnot understand what you are searching for',
-			'user'=>$message
+			'user'=>$message,
+			'input'=>'<input id = "msg" name="msg" type="text" maxlength="1000" autocomplete="off">'
 		]);
 			
 		}
@@ -48,6 +52,8 @@ class Valid extends Controller
 		$message=$req->msg;
 		if($message!=null)
 		{
+			$reset=DB::table('chat')
+			->update(['input'=>'']);
 		$data1=DB::table('complaint_track')
 		->where('id',$message)
 		->count();
@@ -62,10 +68,19 @@ class Valid extends Controller
 		 $userinsert=DB::table('chat')
 		 ->insert([
 		 'chatbot'=>'your complaint has been submitted successfully. we will get you  soon.press hey to continue chat',
-		 'user'=>$message
+		 'user'=>$message,
+		 'input'=>'<input id = "msg" name="msg" type="text" maxlength="1000" autocomplete="off">'
 		]);
 		}
-		else{}
+		elseif(($item->status)=='reject')
+		{
+			$userinsert=DB::table('chat')
+		 ->insert([
+		 'chatbot'=>'your complaint has been rejected.press hey to continue chat',
+		 'user'=>$message,
+		 'input'=>'<input id = "msg" name="msg" type="text" maxlength="1000" autocomplete="off">'
+		]);
+		}
 		 }
 		
 		}
@@ -74,7 +89,8 @@ class Valid extends Controller
 			$userinsert=DB::table('chat')
 		 ->insert([
 		 'chatbot'=>'no complaint found.please check your comlaint id and try again.press hey to continue chat',
-		 'user'=>$message
+		 'user'=>$message,
+		 'input'=>'<input id = "msg" name="msg" type="text" maxlength="1000" autocomplete="off">'
 		]);
 		}
 		}

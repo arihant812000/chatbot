@@ -1,4 +1,5 @@
 <link rel="stylesheet" href= "css\stylesheet.css" type="text/css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 body {font-family: Arial, Helvetica, sans-serif;}
 /* The Modal (background) */
@@ -92,11 +93,18 @@ border:2px inset #A3130E;
 			@endif
 		@endforeach
 	</div>
+	@foreach($data as $item)
+	@if(($item->input)!="")
 	<form class="chat-form" action="dbcon" method="POST" >
 	{{ csrf_field() }}
-	<textarea id = "msg" name="msg"></textarea>
-	<button onclick="form.submit()">send</button>
+	
+	{!!$item->input!!}
+	<button onclick="myFunction()"><i class = "fa fa-paper-plane" ></i></button>
+	@else
+		@endif
 	</form>
+	
+	@endforeach
 	</div>
 </div>
 </div>
@@ -104,6 +112,18 @@ border:2px inset #A3130E;
 <script>
 var box = document.getElementById('Box');
 box.scrollTop = box.scrollHeight;
-
+function myFunction() {
+  var inpObj = document.getElementById("id1");
+  if (!inpObj.checkValidity()) {
+    document.getElementById("demo").innerHTML = inpObj.validationMessage;
+  } else {
+    form.submit();
+  } 
+} 
+document.getElementById('msg').onkeydown = function(e){
+   if(e.keyCode == 13){
+     myFunction();
+   }
+};
 </script>
 

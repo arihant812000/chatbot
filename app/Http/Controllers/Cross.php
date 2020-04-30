@@ -20,7 +20,10 @@ class Cross extends Controller
 				->where('id','>','1')
 				->delete();
 			}
-			else{}
+			else{
+				$reset=DB::table('chat')
+			->update(['input'=>'<input id = "msg" name="msg" type="text" maxlength="1000" autocomplete="off">']);
+			}
 		
 			}
 		

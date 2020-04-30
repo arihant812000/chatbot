@@ -1,4 +1,5 @@
-<link rel="stylesheet" href= "css\stylesheet.css" type="text/css">
+<link rel="stylesheet" href= "/css/stylesheet.css" type="text/css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 body {font-family: Arial, Helvetica, sans-serif;}
 /* The Modal (background) */
@@ -109,8 +110,8 @@ border:2px inset #A3130E;
 	</div>
 	<form class="chat-form" action="dbcon" method="POST" >
 	{{ csrf_field() }}
-	<textarea id = "msg" name="msg"></textarea>
-	<button onclick="form.submit()">send</button>
+	<input id = "msg" name="msg" type="text" maxlength="1000" autocomplete="off">
+	<button onclick="myFunction()" class="btn"><i class = "fa fa-paper-plane"></i></button>
 	</form>
 	</div>
 </div>
@@ -119,4 +120,17 @@ border:2px inset #A3130E;
 var box = document.getElementById('Box');
 box.scrollTop = box.scrollHeight;
 
+function myFunction() {
+  var inpObj = document.getElementById("id1");
+  if (!inpObj.checkValidity()) {
+    document.getElementById("demo").innerHTML = inpObj.validationMessage;
+  } else {
+    form.submit();
+  } 
+} 
+document.getElementById('msg').onkeydown = function(e){
+   if(e.keyCode == 13){
+     myFunction();
+   }
+};
 </script>

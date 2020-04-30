@@ -22,7 +22,8 @@ class User extends Controller
 	   $userinsert=DB::table('chat')
 		->insert([
 			'chatbot'=>'please enter your name',
-			'user'=>'crime registration'
+			'user'=>'crime registration',
+			'input'=>'<input id = "msg" name="msg" type="text" maxlength="1000" autocomplete="off">'
 			]);
 			$data=DB::table('chat')->get();
 	 return view('list2',['data'=>$data]);
@@ -31,8 +32,9 @@ class User extends Controller
    {
 	   $userinsert=DB::table('chat')
 		->insert([
-			'chatbot'=>'please the complaint id to track',
-			'user'=>'complaint  tracking'
+			'chatbot'=>'please enter the complaint id to track',
+			'user'=>'complaint  tracking',
+			'input'=>'<input id = "msg" name="msg" type="text" maxlength="1000" autocomplete="off">'
 			]);
 			$data=DB::table('chat')->get();
 	 return view('track',['data'=>$data]);
